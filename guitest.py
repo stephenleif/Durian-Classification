@@ -30,7 +30,7 @@ def predictImage():
         cnn_model = load_model('C:\\Users\\steph\\OneDrive\\Documents\\Code Practice\\DurianClassification\\durian_classification_trained_model.h5')
         cnn_model.run_eagerly = True
         probabilities = cnn_model.predict(np.array([my_image_re, ]), verbose=0)[0, :]
-        number_to_class = ['D13', 'D24', 'D197']
+        number_to_class = ['D13 (Red Prawn or Ang Hae)', 'D24 (Durian Sultan)', 'D197 (Musang King or Mao Shan Wang)']
         index = np.argsort(probabilities)
         predictions = {
             "class1": number_to_class[index[2]],
@@ -43,15 +43,15 @@ def predictImage():
         print(predictions)
 
         # Display the predictions in the GUI
-        prediction_text = f"Class 1 (Red Prawn or Ang Hae): {predictions['class1']} ({predictions['prob1']:.2f})\n" \
-                         f"Class 2 (Musang King or Mao Shan Wang): {predictions['class2']} ({predictions['prob2']:.2f})\n" \
-                         f"Class 3 (Durian Sultan): {predictions['class3']} ({predictions['prob3']:.2f})"
+        prediction_text = f"Class 1: {predictions['class1']} ({predictions['prob1']:.2f})\n" \
+                         f"Class 2: {predictions['class2']} ({predictions['prob2']:.2f})\n" \
+                         f"Class 3: {predictions['class3']} ({predictions['prob3']:.2f})"
         img_label.config(text=prediction_text)
     except NameError:
         img_label.config(text="Please select an image first.")
 
     except Exception:
-        img_label.config(text="Error occurred. Please try again.")
+        img_label.config(text="Error occurred. Please select a different image.")
 
 root = tk.Tk()
 root.title("Image Processing")
