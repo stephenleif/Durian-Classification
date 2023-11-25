@@ -54,18 +54,28 @@ def predictImage():
         img_label.config(text="Error occurred. Please select a different image.")
 
 root = tk.Tk()
-root.title("Image Processing")
+root.title("Durian Classification")
 
-select_button = tk.Button(root, text="Select Image", command=selectImage, padx=15, pady=10)
-select_button.pack()
+button_style = {
+    'bg': 'white',     # Background color
+    'fg': 'black',     # Text color
+    'bd': 2,           # Border width
+    'relief': 'solid',  # Border style
+    'padx': 50,
+    'pady': 5
+}
 
-space_label = tk.Label(root, text="   ")
-space_label.pack()
+#select_button = tk.Button(root, text="Select Image", command=selectImage, padx=15, pady=10)
+#select_button.pack()
+select_button = tk.Button(root, text="Select Image",command=selectImage, font=('Arial', 12), **button_style)
+select_button.pack(pady=20)
 
-predict_button = tk.Button(root, text="Predict Image", command=predictImage, padx=15, pady=10)
-predict_button.pack()
+#predict_button = tk.Button(root, text="Predict Image", command=predictImage, padx=15, pady=10)
+#predict_button.pack()
+predict_button = tk.Button(root, text="Predict Image", command=predictImage, font=('Arial', 12), **button_style)
+predict_button.pack(pady=20, padx=50)
 
 img_label = tk.Label(root)
-img_label.pack()
+img_label.pack(anchor='nw', padx=10, pady=10)
 
 root.mainloop()
